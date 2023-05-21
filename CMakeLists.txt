@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(leetcode util.h 412_fizz_buzz.cpp)
+add_executable(leetcode util.h 9_palindrome_number.cpp)
