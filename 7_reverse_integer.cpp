@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 int reverse(int x) {
     int reversed = 0;

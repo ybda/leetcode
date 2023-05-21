@@ -21,7 +21,9 @@ std::vector<std::string> fizzBuzz(const int n) {
         }
         rp[i-1] = std::move(s);
     }
-    return {rp, rp + n};
+    std::vector<std::string> rs(rp, rp + n);
+    delete[] rp;
+    return rs;
 }
 
 
