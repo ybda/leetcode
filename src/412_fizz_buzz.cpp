@@ -28,7 +28,7 @@ std::vector<std::string> fizzBuzz(const int n) {
 
 
 int main() {
-    std::cout << arrStr<std::string>(fizzBuzz(3)) << '\n';
-    std::cout << arrStr<std::string>(fizzBuzz(5)) << '\n';
-    std::cout << arrStr<std::string>(fizzBuzz(15)) << '\n';
+    std::cout << util::arrStr<std::string>(fizzBuzz(3)) << '\n';
+    std::cout << util::arrStr<std::string>(fizzBuzz(5)) << '\n';
+    std::cout << util::arrStr<std::string>(fizzBuzz(15)) << '\n';
 }
