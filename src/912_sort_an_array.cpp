@@ -25,13 +25,6 @@ void quicksortInternal(int *nums, const int left, const int right) {
     quicksortInternal(nums, rt + 1, right);
 }
 
-/*
- * quick sort:
- *     ~ N * (N - 1) / 2 => O(N^2) time,
- *     Θ(Nlog(N)) time,
- *     Ω(Nlog(N)) time,
- *     O(1) space
- */
 void quicksort(int *nums, const int numsSize, int *returnSize) {
     *returnSize = numsSize;
     srand(time(NULL));
