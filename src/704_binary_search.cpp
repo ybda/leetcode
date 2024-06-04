@@ -19,9 +19,9 @@ int search(int* nums, int numsSize, int target) {
 }
 
 int main() {
-    int arr[] = {10, 7, 8, 9, 1, 5};
+    int arr[] = {-1,0,3,5,9,12};
     int size = sizeof(arr) / sizeof(arr[0]);
-    int num = 8;
+    int num = 9;
 
     std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
