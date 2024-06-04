@@ -49,7 +49,7 @@ void quickSortArray(int *nums, int numsSize, int *returnSize) {
 }
 
 int* sortArray(int *nums, int numsSize, int *returnSize) {
-    int *newNums = (int*)calloc(numsSize, sizeof(int));
+    int *newNums = (int*)malloc(numsSize * sizeof(int));
     for (int i = 0; i < numsSize; i++) {
         newNums[i] = nums[i];
     }
