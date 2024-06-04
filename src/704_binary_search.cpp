@@ -1,6 +1,8 @@
 #include <cstdio>
 #include "util.h"
 
+// C
+
 int searchInternal(int* nums, int l, int r, int target) {
     int mid, val;
     if (l <= r) {
