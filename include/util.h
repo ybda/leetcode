@@ -6,7 +6,7 @@
 
 namespace util {
     template<typename T>
-    static std::string arrStr(const std::vector<T> &v) {
+    static std::string arrToStrQuotes(const std::vector<T> &v) {
         if (v.empty()) {
             return "[]";
         }
@@ -16,7 +16,40 @@ namespace util {
         for (auto it = v.begin(); it != v.end(); ++it) {
             oss << *it;
             if (std::next(it) != v.end()) {
-                oss << "\",\"";
+                oss << "\", \"";
+            }
+        }
+        oss << "\"]";
+
+        return oss.str();
+    }
+
+    template <typename T>
+    std::string arrToStr(const std::vector<T>& nums) {
+        std::stringstream ss;
+        ss << "[";
+        for (int i = 0; i < nums.size(); i++) {
+            ss << nums[i];
+            if (i < nums.size() - 1) {
+                ss << ", ";
+            }
+        }
+        ss << "]";
+        return ss.str();
+    }
+
+    template<typename T>
+    static std::string arrToStrQuotes(const T *arr, const size_t size) {
+        if (size == 0) {
+            return "[]";
+        }
+
+        std::ostringstream oss;
+        oss << "[\"";
+        for (size_t i = 0; i < size; ++i) {
+            oss << arr[i];
+            if (i != size - 1) {
+                oss << "\", \"";
             }
         }
         oss << "\"]";
@@ -25,7 +58,7 @@ namespace util {
     }
 
     template<typename T>
-    static std::string arrStr(const T *arr, const size_t size) {
+    static std::string arrToStr(const T *arr, const size_t size) {
         if (size == 0) {
             return "[]";
         }
@@ -42,6 +75,8 @@ namespace util {
 
         return oss.str();
     }
+
+
 
     static inline size_t strlen(const char* s) {
         size_t i = 0;
