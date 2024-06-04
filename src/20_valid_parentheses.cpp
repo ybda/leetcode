@@ -1,8 +1,8 @@
-#include <iostream>
 #include <string>
-#include <vector>
 #include <map>
 #include <stack>
+#include <cassert>
+#include "util.h"
 
 // ({[
 bool isValid(const std::string &s) {
@@ -31,17 +31,23 @@ bool isValid(const std::string &s) {
 
 
 int main() {
-    std::cout << isValid("()") << std::flush
-              << isValid("()[]{}")
-              << isValid("()[]{}")
-              << isValid("(){}")
-              << isValid("{}()")
-              << isValid("{[]}")
-              << !isValid("([]{}") << std::flush
-              << !isValid("(") << std::flush
-              << !isValid("(){}}{") << std::flush
-              << !isValid("(}{)") << std::flush
-              << !isValid("]") << std::flush
-              << !isValid("){") << std::flush
-              << !isValid("(]");
+    TestCase2<std::string, bool> testCases[] = {
+            {"()",  true},
+            {"()[]{}",  true},
+            {"(){}",  true},
+            {"{}()",  true},
+            {"{[]}",  true},
+            {"([]{}",  false},
+            {"(",  false},
+            {"(){}}{",  false},
+            {"(}{)",  false},
+            {"]",  false},
+            {"){",  false},
+            {"(]",  false},
+    };
+
+    for (const auto& testCase : testCases) {
+        unsigned long output = isValid(testCase.input);
+        assert(output == testCase.expected);
+    }
 }
