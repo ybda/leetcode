@@ -6,7 +6,7 @@
 
 namespace util {
     template<typename T>
-    std::string arrStr(const std::vector<T> &v) {
+    static std::string arrStr(const std::vector<T> &v) {
         if (v.empty()) {
             return "[]";
         }
@@ -25,7 +25,7 @@ namespace util {
     }
 
     template<typename T>
-    std::string arrStr(const T *arr, const size_t size) {
+    static std::string arrStr(const T *arr, const size_t size) {
         if (size == 0) {
             return "[]";
         }
@@ -41,6 +41,21 @@ namespace util {
         oss << ']';
 
         return oss.str();
+    }
+
+    static inline size_t strlen(const char* s) {
+        size_t i = 0;
+        for (; s[i] != '\0'; i++) {
+        }
+        return i;
+    }
+
+    static inline unsigned short hexCharToNum(char c) {
+        return c > 64 ? c - 55 : c - 48;
+    }
+
+    static inline bool isDigit(char ch){
+        return ch >= '0' && ch <= '9';
     }
 }
 
