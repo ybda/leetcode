@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -42,3 +43,15 @@ namespace util {
         return oss.str();
     }
 }
+
+template<typename T>
+struct TestCase {
+    T input;
+    T expected;
+};
+
+template<typename T1, typename T2>
+struct TestCase2 {
+    T1 input;
+    T2 expected;
+};
