@@ -1,29 +1,63 @@
 #include <iostream>
 #include "util.h"
 
+void swap(int *nums, int i, int j) {
+    if (i != j) {
+        nums[i] ^= nums[j];
+        nums[j] ^= nums[i];
+        nums[i] ^= nums[j];
+    }
+}
+
+/*
+ * knuth shuffle: O(N) time, O(1) space
+ */
+void shuffle(int *nums, int numsSize) {
+    srand(time(NULL));
+    for (int i = 0; i < numsSize; i++) {
+        int j = rand() % (i + 1);
+        if (i != j) {
+            swap(nums, i, j);
+        }
+    }
+}
+
 void quicksortInternal(int *target, int left, int right) {
     if(left >= right) return;
-    int i = left, j = right;
-    int tmp, pivot = target[i];
+    int lt = left, rt = right;
+    int pivot = target[lt];
     for(;;) {
-        while(target[i] < pivot) i++;
-        while(pivot < target[j]) j--;
-        if(i >= j) break;
-        tmp = target[i]; target[i] = target[j]; target[j] = tmp;
-        i++; j--;
+        while(target[lt] < pivot) lt++;
+        while(pivot < target[rt]) rt--;
+        if(lt >= rt) break;
+        swap(target, lt, rt);
+        lt++; rt--;
     }
-    quicksortInternal(target, left, i - 1);
-    quicksortInternal(target, j + 1, right);
+    quicksortInternal(target, left, lt - 1);
+    quicksortInternal(target, rt + 1, right);
 }
 
-void quicksort(int *target, int size) {
-    quicksortInternal(target, 0, size - 1);
-}
-
-int* sortArray(int* nums, int numsSize, int* returnSize) {
-    quicksort(nums, numsSize);
+/*
+ * quick sort:
+ *     ~ N * (N - 1) / 2 => O(N^2) time,
+ *     Θ(Nlog(N)) time,
+ *     Ω(Nlog(N)) time,
+ *     O(1) space
+ */
+void quickSortArray(int *nums, int numsSize, int *returnSize) {
     *returnSize = numsSize;
-    return nums;
+    shuffle(nums, numsSize);
+    quicksortInternal(nums, 0, numsSize - 1);
+}
+
+int* sortArray(int *nums, int numsSize, int *returnSize) {
+    int *newNums = (int*)calloc(numsSize, sizeof(int));
+    for (int i = 0; i < numsSize; i++) {
+        newNums[i] = nums[i];
+    }
+
+    quickSortArray(newNums, numsSize, returnSize);
+    return newNums;
 }
 
 int main() {
@@ -32,7 +66,8 @@ int main() {
 
     std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
-    quicksort(arr, size);
+    int retSize = 0;
+    auto sortedArr = sortArray(arr, size, &retSize);
 
-    std::cout << "Sorted array: " << util::arrToStr(arr, size) << "\n";
+    std::cout << "Sorted array: " << util::arrToStr(sortedArr, retSize) << "\n";
 }
