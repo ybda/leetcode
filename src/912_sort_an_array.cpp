@@ -25,14 +25,14 @@ void quicksortInternal(int *nums, const int left, const int right) {
     quicksortInternal(nums, rt + 1, right);
 }
 
-void quicksort(int *nums, const int numsSize, int *returnSize) {
-    *returnSize = numsSize;
+void quicksort(int *nums, const int numsSize) {
     srand(time(NULL));
     quicksortInternal(nums, 0, numsSize - 1);
 }
 
 int* sortArray(int *nums, const int numsSize, int *returnSize) {
-    quicksort(nums, numsSize, returnSize);
+    *returnSize = numsSize;
+    quicksort(nums, numsSize);
     return nums;
 }
 
