@@ -20,19 +20,19 @@ void shuffle(int *nums, int numsSize) {
     }
 }
 
-void quicksortInternal(int *target, int left, int right) {
+void quicksortInternal(int *nums, int left, int right) {
     if(left >= right) return;
     int lt = left, rt = right;
-    int pivot = target[lt];
+    int pivot = nums[lt];
     for(;;) {
-        while(target[lt] < pivot) lt++;
-        while(pivot < target[rt]) rt--;
+        while(nums[lt] < pivot) lt++;
+        while(pivot < nums[rt]) rt--;
         if(lt >= rt) break;
-        swap(target, lt, rt);
+        swap(nums, lt, rt);
         lt++; rt--;
     }
-    quicksortInternal(target, left, lt - 1);
-    quicksortInternal(target, rt + 1, right);
+    quicksortInternal(nums, left, lt - 1);
+    quicksortInternal(nums, rt + 1, right);
 }
 
 /*
@@ -42,14 +42,14 @@ void quicksortInternal(int *target, int left, int right) {
  *     Ω(Nlog(N)) time,
  *     O(1) space
  */
-void quickSortArray(int *nums, int numsSize, int *returnSize) {
+void quicksort(int *nums, int numsSize, int *returnSize) {
     *returnSize = numsSize;
     shuffle(nums, numsSize);
     quicksortInternal(nums, 0, numsSize - 1);
 }
 
 int* sortArray(int *nums, int numsSize, int *returnSize) {
-    quickSortArray(nums, numsSize, returnSize);
+    quicksort(nums, numsSize, returnSize);
     return nums;
 }
 
