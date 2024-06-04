@@ -23,7 +23,7 @@ int main() {
     int size = sizeof(arr) / sizeof(arr[0]);
     int num = 8;
 
-    std::cout << "Original array: " << util::arrStr(arr, size) << "\n";
+    std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
     // Perform binary search
     int index = search(arr, size, num);
