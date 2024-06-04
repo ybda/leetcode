@@ -4,6 +4,8 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME} include/util.h src/412_fizz_buzz.cpp)
+add_executable(${PROJECT_NAME}
+        ./include/util.h
+        ./src/factorial.cpp)
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
+target_include_directories(${PROJECT_NAME} PRIVATE ./include)
