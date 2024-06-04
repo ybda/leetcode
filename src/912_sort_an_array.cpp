@@ -7,23 +7,11 @@ void swap(int *nums, int i, int j) {
     nums[i] = temp;
 }
 
-/*
- * knuth shuffle: O(N) time, O(1) space
- */
-void shuffle(int *nums, int numsSize) {
-    srand(time(NULL));
-    for (int i = 0; i < numsSize; i++) {
-        int j = rand() % (i + 1);
-        if (i != j) {
-            swap(nums, i, j);
-        }
-    }
-}
-
 void quicksortInternal(int *nums, int left, int right) {
     if(left >= right) return;
+
     int lt = left, rt = right;
-    int pivot = nums[lt];
+    int pivot = nums[rand() % (right - left + 1) + left];
     for(;;) {
         while(nums[lt] < pivot) lt++;
         while(pivot < nums[rt]) rt--;
@@ -44,7 +32,7 @@ void quicksortInternal(int *nums, int left, int right) {
  */
 void quicksort(int *nums, int numsSize, int *returnSize) {
     *returnSize = numsSize;
-    shuffle(nums, numsSize);
+    srand(time(NULL));
     quicksortInternal(nums, 0, numsSize - 1);
 }
 
