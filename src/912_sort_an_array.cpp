@@ -3,17 +3,17 @@
 
 // C
 
-void swap(int *nums, int i, int j) {
+void swap(int *nums, const int i, const int j) {
     int temp = nums[j];
     nums[j] = nums[i];
     nums[i] = temp;
 }
 
-void quicksortInternal(int *nums, int left, int right) {
+void quicksortInternal(int *nums, const int left, const int right) {
     if(left >= right) return;
 
     int lt = left, rt = right;
-    int pivot = nums[rand() % (right - left + 1) + left];
+    const int pivot = nums[rand() % (right - left + 1) + left];
     for(;;) {
         while(nums[lt] < pivot) lt++;
         while(pivot < nums[rt]) rt--;
@@ -32,25 +32,25 @@ void quicksortInternal(int *nums, int left, int right) {
  *     Ω(Nlog(N)) time,
  *     O(1) space
  */
-void quicksort(int *nums, int numsSize, int *returnSize) {
+void quicksort(int *nums, const int numsSize, int *returnSize) {
     *returnSize = numsSize;
     srand(time(NULL));
     quicksortInternal(nums, 0, numsSize - 1);
 }
 
-int* sortArray(int *nums, int numsSize, int *returnSize) {
+int* sortArray(int *nums, const int numsSize, int *returnSize) {
     quicksort(nums, numsSize, returnSize);
     return nums;
 }
 
 int main() {
     int arr[] = {10, 7, 8, 7, 9, 1, 5};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    const int size = sizeof(arr) / sizeof(arr[0]);
 
     std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
     int retSize = 0;
-    auto sortedArr = sortArray(arr, size, &retSize);
+    const auto sortedArr = sortArray(arr, size, &retSize);
 
     std::cout << "Sorted array: " << util::arrToStr(sortedArr, retSize) << "\n";
 }
