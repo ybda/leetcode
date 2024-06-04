@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME}
         ./include/util.h
-        ./src/factorial.cpp)
+        ./src/509_fibonacci_number.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ./include)
