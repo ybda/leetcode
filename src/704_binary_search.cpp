@@ -1,27 +1,26 @@
 #include <cstdio>
 #include "util.h"
 
-int search(int *arr, int l, int r, int num) {
-    static int mid, val;
+int searchInternal(int* nums, int l, int r, int target) {
+    int mid, val;
     if (l <= r) {
         mid = (l + r) / 2;
-        val = arr[mid];
-        if (val > num) return search(arr, l, mid - 1, num);
-        if (val < num) return search(arr, mid + 1, r, num);
+        val = nums[mid];
+        if (val > target) return searchInternal(nums, l, mid - 1, target);
+        if (val < target) return searchInternal(nums, mid + 1, r, target);
         return mid;
     }
-
     return -1;
 }
 
 int search(int* nums, int numsSize, int target) {
-    return search(nums, 0, numsSize-1, target);
+    return searchInternal(nums, 0, numsSize - 1, target);
 }
 
 int main() {
     int arr[] = {-1,0,3,5,9,12};
     int size = sizeof(arr) / sizeof(arr[0]);
-    int num = 9;
+    int num = 12;
 
     std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
