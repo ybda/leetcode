@@ -1,14 +1,7 @@
 #include <cassert>
 #include "util.h"
 
-unsigned long factorialRecursion(unsigned int n) {
-    if (n <= 1) {
-        return 1;
-    }
-    return n * factorialRecursion(n - 1);
-}
-
-unsigned long factorialNoRecursion(unsigned int n) {
+unsigned long factorial(unsigned int n) {
     unsigned long fact = 1;
     for(int i = 1; i <= n; i++) {
         fact = fact * i;
@@ -37,10 +30,7 @@ int main() {
     };
 
     for (const auto& testCase : testCases) {
-        unsigned long output = factorialRecursion(testCase.input);
-        assert(output == testCase.expected);
-
-        output = factorialNoRecursion(testCase.input);
+        unsigned long output = factorial(testCase.input);
         assert(output == testCase.expected);
     }
 }
