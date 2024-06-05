@@ -3,26 +3,43 @@
 
 // C
 
-int searchInternal(int* nums, int l, int r, int target) {
-    int mid, val;
+int searchInternalRecursive(const int* nums, const int l, const int r, const int target) {
     if (l <= r) {
-        mid = (l + r) / 2;
-        val = nums[mid];
-        if (val > target) return searchInternal(nums, l, mid - 1, target);
-        if (val < target) return searchInternal(nums, mid + 1, r, target);
+        const int mid = (l + r) / 2;
+        const int val = nums[mid];
+        if (val > target) return searchInternalRecursive(nums, l, mid - 1, target);
+        if (val < target) return searchInternalRecursive(nums, mid + 1, r, target);
         return mid;
     }
     return -1;
 }
 
+int searchInternal(const int* nums, const int size, const int target) {
+    int l = 0, r = size - 1;
+    while (l <= r) {
+        const int mid = l + (r - l) / 2;
+        const int guess = nums[mid];
+        if (guess > target) {
+            r = mid - 1;
+        }
+        else if (guess < target) {
+            l = mid + 1;
+        }
+        else {
+            return mid;
+        }
+    }
+    return -1;
+}
+
 int search(int* nums, int numsSize, int target) {
-    return searchInternal(nums, 0, numsSize - 1, target);
+    return searchInternal(nums, numsSize, target);
 }
 
 int main() {
     int arr[] = {-1,0,3,5,9,12};
     int size = sizeof(arr) / sizeof(arr[0]);
-    int num = 12;
+    const int num = 12;
 
     std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
