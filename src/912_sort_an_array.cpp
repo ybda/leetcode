@@ -9,20 +9,21 @@ void swap(int *nums, const int i, const int j) {
     nums[i] = temp;
 }
 
-void quicksortInternal(int *nums, const int left, const int right) {
-    if(left >= right) return;
+void quicksortInternal(int *nums, const int l, const int r) {
+    if (l >= r) return;
 
-    int lt = left, rt = right;
-    const int pivot = nums[rand() % (right - left + 1) + left];
-    for(;;) {
-        while(nums[lt] < pivot) lt++;
-        while(pivot < nums[rt]) rt--;
-        if(lt >= rt) break;
-        swap(nums, lt, rt);
-        lt++; rt--;
+    int lp = l, rp = r;
+    const int pivot = nums[rand() % (r - l + 1) + l];
+    for (;;) {
+        while (nums[lp] < pivot) lp++;
+        while (nums[rp] > pivot) rp--;
+        if (lp >= rp) break;
+        swap(nums, lp, rp);
+        lp++; rp--;
     }
-    quicksortInternal(nums, left, lt - 1);
-    quicksortInternal(nums, rt + 1, right);
+
+    quicksortInternal(nums, l, lp - 1);
+    quicksortInternal(nums, rp + 1, r);
 }
 
 void quicksort(int *nums, const int numsSize) {
