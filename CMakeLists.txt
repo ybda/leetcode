@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME}
         ./include/util.h
-        ./src/912_sort_an_array.cpp)
+        ./src/704_binary_search.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ./include)

@@ -5,20 +5,20 @@
 
 int searchInternalRecursive(const int* nums, const int l, const int r, const int target) {
     if (l <= r) {
-        const int mid = (l + r) / 2;
-        const int val = nums[mid];
-        if (val > target) return searchInternalRecursive(nums, l, mid - 1, target);
-        if (val < target) return searchInternalRecursive(nums, mid + 1, r, target);
+        const int mid = (l + r) / 2,
+            guess = nums[mid];
+        if (guess > target) return searchInternalRecursive(nums, l, mid - 1, target);
+        if (guess < target) return searchInternalRecursive(nums, mid + 1, r, target);
         return mid;
     }
     return -1;
 }
 
-int searchInternal(const int* nums, const int size, const int target) {
+int searchInternalIterative(const int* nums, const int size, const int target) {
     int l = 0, r = size - 1;
     while (l <= r) {
-        const int mid = l + (r - l) / 2;
-        const int guess = nums[mid];
+        const int mid = (l + r) / 2,
+            guess = nums[mid];
         if (guess > target) {
             r = mid - 1;
         }
@@ -33,7 +33,8 @@ int searchInternal(const int* nums, const int size, const int target) {
 }
 
 int search(int* nums, int numsSize, int target) {
-    return searchInternal(nums, numsSize, target);
+//    return searchInternalRecursive(nums, 0, numsSize - 1, target);
+    return searchInternalIterative(nums, numsSize, target);
 }
 
 int main() {
