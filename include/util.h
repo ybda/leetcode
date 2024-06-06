@@ -93,7 +93,8 @@ namespace util {
         return ch >= '0' && ch <= '9';
     }
 
-    static bool arraysEqual(const int *arr1, int size1, const int *arr2, int size2) {
+    template <typename T>
+    static bool arraysEqual(const T *arr1, int size1, const T *arr2, int size2) {
         if (size1 != size2) {
             return false;
         }
@@ -107,7 +108,8 @@ namespace util {
         return true;
     }
 
-    static bool arraysEqual(const std::vector<int>& vec1, const std::vector<int>& vec2) {
+    template <typename T>
+    static bool arraysEqual(const std::vector<T>& vec1, const std::vector<T>& vec2) {
         if (vec1.size() != vec2.size()) {
             return false;
         }
