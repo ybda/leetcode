@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 #include "util.h"
 
 std::vector<std::string> fizzBuzz(const int n) {
@@ -28,7 +29,16 @@ std::vector<std::string> fizzBuzz(const int n) {
 
 
 int main() {
-    std::cout << util::arrStr<std::string>(fizzBuzz(3)) << '\n';
-    std::cout << util::arrStr<std::string>(fizzBuzz(5)) << '\n';
-    std::cout << util::arrStr<std::string>(fizzBuzz(15)) << '\n';
+    std::cout << "412_fizz_buzz\n";
+
+    TestCase2<int, std::vector<std::string>> testCases[] = {
+            {3, {"1", "2", "Fizz"}},
+            {5,  {"1", "2", "Fizz", "4", "Buzz"}},
+            {15,  {"1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"}},
+    };
+
+    for (const auto& testCase : testCases) {
+        const auto output = fizzBuzz(testCase.input);
+        assert(util::arraysEqual(output, testCase.expected));
+    }
 }
