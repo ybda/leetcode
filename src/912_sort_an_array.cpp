@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 #include "util.h"
 
 // C
@@ -37,6 +38,15 @@ int* sortArray(int *nums, const int numsSize, int *returnSize) {
     return nums;
 }
 
+bool isSorted(const int* arr, int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        if (arr[i] > arr[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
     int arr[] = {10, 7, 8, 7, 9, 1, 5};
     const int size = sizeof(arr) / sizeof(arr[0]);
@@ -44,7 +54,9 @@ int main() {
     std::cout << "Original array: " << util::arrToStr(arr, size) << "\n";
 
     int retSize = 0;
-    const auto sortedArr = sortArray(arr, size, &retSize);
+    const int* sortedArr = sortArray(arr, size, &retSize);
 
     std::cout << "Sorted array: " << util::arrToStr(sortedArr, retSize) << "\n";
+
+    assert(isSorted(arr, size));
 }
