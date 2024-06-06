@@ -39,6 +39,6 @@ int main() {
 
     for (const auto& testCase : testCases) {
         const auto output = fizzBuzz(testCase.input);
-        assert(util::arraysEqual(output, testCase.expected));
+        assert(output == testCase.expected);
     }
 }
