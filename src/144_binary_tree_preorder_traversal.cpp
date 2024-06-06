@@ -46,5 +46,5 @@ int main() {
 
     std::cout << "Result array: " << util::arrToStr(res) << "\n";
 
-
+    assert(util::arraysEqual(res, {1, 2, 3, 4, 5}));
 }

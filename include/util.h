@@ -92,6 +92,34 @@ namespace util {
     static inline bool isDigit(char ch){
         return ch >= '0' && ch <= '9';
     }
+
+    static bool arraysEqual(const int *arr1, int size1, const int *arr2, int size2) {
+        if (size1 != size2) {
+            return false;
+        }
+
+        for (int i = 0; i < size1; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static bool arraysEqual(const std::vector<int>& vec1, const std::vector<int>& vec2) {
+        if (vec1.size() != vec2.size()) {
+            return false;
+        }
+
+        for (size_t i = 0; i < vec1.size(); i++) {
+            if (vec1[i] != vec2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
 
 template<typename T>
