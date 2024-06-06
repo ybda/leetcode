@@ -3,9 +3,6 @@
 #include "util.h"
 
 bool containsDuplicate(const std::vector<int>& nums) {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
-
     std::unordered_map<int, int> dups;
     for (int num : nums){
         if(dups[num] >= 1){
