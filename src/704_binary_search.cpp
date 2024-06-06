@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cassert>
 #include "util.h"
 
 // C
@@ -46,6 +47,7 @@ int main() {
 
     // Perform binary search
     int index = search(arr, size, num);
+    assert(index == 5);
 
     if (index != -1)
         printf("%d found at index %d.", num, index);
