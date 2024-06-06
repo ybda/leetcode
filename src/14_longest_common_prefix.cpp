@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cassert>
+#include "util.h"
 
 
 size_t getSmallestStringSize(const std::vector<std::string>& ss) {
@@ -44,8 +46,15 @@ std::string longestCommonPrefix(const std::vector<std::string>& ss) {
 
 
 int main() {
-    std::cout << (longestCommonPrefix({"flower","flow","flight"}) == "fl");
-    std::cout << (longestCommonPrefix({"jhtwdsggg","jhtwfdsgghshrgggshw","jhtwbvvvn"}) == "jhtw");
-    std::cout << (longestCommonPrefix({"dog","racecar","car"}).empty());
-    std::cout << (longestCommonPrefix({"cir","car"}) == "c");
+    TestCase2<std::vector<std::string>, std::string> testCases[] = {
+            {{"flower","flow","flight"},  "fl"},
+            {{"jhtwdsggg","jhtwfdsgghshrgggshw","jhtwbvvvn"},  "jhtw"},
+            {{"dog","racecar","car"},  ""},
+            {{"cir","car"},  "c"},
+    };
+
+    for (const auto& testCase : testCases) {
+        auto output = longestCommonPrefix(testCase.input);
+        assert(output == testCase.expected);
+    }
 }
